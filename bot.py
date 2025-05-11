@@ -23,4 +23,13 @@ async def on_ready():
     start_scheduler(bot)
 
 import os
-bot.run(os.getenv("DISCORD_TOKEN"))
+from dotenv import load_dotenv
+# Load environment variables from .env file
+load_dotenv()
+
+discord_token = os.getenv("DISCORD_TOKEN")
+if not discord_token:
+    raise ValueError("DISCORD_TOKEN is not set in the .env file")
+
+bot.run(discord_token)
+
